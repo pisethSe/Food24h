@@ -1,4 +1,4 @@
-# Food24KH — root gitignore
+# Food24h — root gitignore
 
 # Dependencies
 node_modules/
@@ -24,7 +24,6 @@ dist/
 *.tsbuildinfo
 next-env.d.ts
 
-# Rails
 backend/log/*
 backend/tmp/*
 !backend/log/.keep

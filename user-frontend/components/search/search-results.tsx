@@ -11,7 +11,7 @@ export function SearchResults({ query }: { query: string }) {
   const { restaurants, foods } = searchCatalog(query);
 
   if (!query.trim()) {
-    return <EmptyState emoji="🔎" title="Search Food24KH" text="Type a restaurant, cuisine or dish in the search bar above." />;
+    return <EmptyState emoji="🔎" title="Search Food24h" text="Type a restaurant, cuisine or dish in the search bar above." />;
   }
 
   if (!restaurants.length && !foods.length) {

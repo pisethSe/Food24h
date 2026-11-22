@@ -19,11 +19,11 @@ export function Logo({ className, inverted = false, variant = "full", size = "md
   const src = inverted ? "/brand/logo-on-dark.png" : "/brand/logo-transparent.png";
 
   return (
-    <Link href="/" aria-label="Food24KH home" className={cn("inline-flex items-center", className)}>
+    <Link href="/" aria-label="Food24h home" className={cn("inline-flex items-center", className)}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
-        alt="Food24KH — Fast · Fresh · For You"
+        alt="Food24h — Fast · Fresh · For You"
         className={cn("w-auto object-contain object-left", imageClass[size], variant === "mark" && "aspect-square max-w-[2.5rem] object-left")}
       />
     </Link>

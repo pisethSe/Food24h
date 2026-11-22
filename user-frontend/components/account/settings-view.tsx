@@ -30,7 +30,7 @@ export function SettingsView() {
       <section className="rounded-3xl border border-border bg-card p-5 sm:p-6">
         <h2 className="font-display text-lg font-bold">Language · ភាសា</h2>
         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-          <Choice value="en" current={preferences.locale} onSelect={setLocale} label="English" hint="Use English across Food24KH" />
+          <Choice value="en" current={preferences.locale} onSelect={setLocale} label="English" hint="Use English across Food24h" />
           <Choice value="km" current={preferences.locale} onSelect={setLocale} label="ខ្មែរ" hint="ប្រើភាសាខ្មែរ" />
         </div>
       </section>

@@ -297,7 +297,7 @@ export function CheckoutView() {
             {placing ? "Placing order…" : `Place order · ${money(summary.total)}`}
           </button>
           <p className="mt-3 text-center text-xs text-muted">
-            Demo mode: orders are saved on this device only. When the Food24KH API is connected, prices and totals are verified by the server.
+            Demo mode: orders are saved on this device only. When the Food24h API is connected, prices and totals are verified by the server.
           </p>
           <Link href="/cart" className="mt-3 block text-center text-sm font-semibold text-primary hover:underline">
             Edit cart

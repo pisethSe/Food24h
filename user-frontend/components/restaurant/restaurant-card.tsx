@@ -10,6 +10,7 @@ import { useMoney } from "@/lib/money";
 import { useStore } from "@/lib/store";
 import { favoritesStore, toggleFavorite } from "@/lib/stores";
 import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
 import type { Restaurant } from "@/types";
 
 type RestaurantCardProps = {
@@ -33,20 +34,24 @@ export function RestaurantCard({ restaurant, mode = "delivery", className }: Res
   const isLogo = Boolean(restaurant.logoUrl) || restaurant.kind === "shop";
 
   return (
-    <article className={cn("group relative", className)}>
+    <motion.article
+      className={cn("group relative", className)}
+      whileHover={{ y: -4 }}
+      transition={{ type: "spring", stiffness: 260, damping: 22 }}
+    >
       <Link
         href={`/restaurants/${restaurant.slug}`}
         className="block rounded-2xl outline-offset-4"
         aria-label={`${restaurant.name}, rated ${restaurant.rating}`}
       >
-        <div className="relative overflow-hidden rounded-2xl">
+        <div className="relative overflow-hidden rounded-[1.25rem] border border-border/70 bg-card shadow-[0_10px_30px_-18px_rgba(24,51,42,0.38)]">
           <VisualTile
             emoji={restaurant.emoji}
             tint={restaurant.tint}
             imageUrl={coverImage}
             label={restaurant.name}
             className={cn(
-              "aspect-[16/10] bg-white transition duration-300 group-hover:scale-[1.03]",
+              "aspect-[16/10] bg-white transition duration-500 group-hover:scale-[1.025]",
               isLogo && "ring-1 ring-border"
             )}
             emojiClassName="text-6xl"
@@ -54,7 +59,7 @@ export function RestaurantCard({ restaurant, mode = "delivery", className }: Res
           />
           <div className="absolute left-3 top-3 flex flex-col items-start gap-1.5">
             {restaurant.promotion && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-primary shadow">
+              <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-primary shadow-[0_6px_18px_-10px_rgba(24,51,42,0.55)]">
                 <Tag className="h-3 w-3" aria-hidden /> {restaurant.promotion}
               </span>
             )}
@@ -113,6 +118,6 @@ export function RestaurantCard({ restaurant, mode = "delivery", className }: Res
       >
         <Heart className={cn("h-5 w-5", isFavorite ? "fill-primary text-primary" : "text-slate-700")} aria-hidden />
       </button>
-    </article>
+    </motion.article>
   );
 }

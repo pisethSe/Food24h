@@ -1,11 +1,11 @@
-"""Generate crisp Food24KH favicons — white bag + gold base on navy."""
+"""Generate crisp Food24h favicons — white bag + gold base on navy."""
 from __future__ import annotations
 
 from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-ROOT = Path(r"e:\PROJECT_STANDARD_2026\Food24KH\user-frontend")
+ROOT = Path(r"e:\PROJECT_STANDARD_2026\Food24h\user-frontend")
 NAVY = (0, 0, 139, 255)
 GOLD = (255, 184, 28, 255)
 WHITE = (255, 255, 255, 255)

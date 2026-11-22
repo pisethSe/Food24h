@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 
 const pages: Record<string, { title: string; sections: { heading: string; body: string }[] }> = {
   about: {
-    title: "About Food24KH",
+    title: "About Food24h",
     sections: [
-      { heading: "Our mission", body: "Food24KH helps people across Cambodia order from the local restaurants and shops they love — quickly, fairly and in their own language." },
+      { heading: "Our mission", body: "Food24h helps people across Cambodia order from the local restaurants and shops they love — quickly, fairly and in their own language." },
       { heading: "What the name means", body: "Food for our marketplace, 24 for ordering whenever you need it, and KH for Cambodia and the Khmer community we serve." },
       { heading: "Local first", body: "We support English and Khmer, US dollars and riel, and we work with independent Cambodian businesses as well as larger brands." },
     ],
@@ -23,15 +23,15 @@ const pages: Record<string, { title: string; sections: { heading: string; body: 
   terms: {
     title: "Terms & conditions",
     sections: [
-      { heading: "Draft terms", body: "These terms are a placeholder for development and are not legally binding. Final terms will be published before Food24KH launches." },
-      { heading: "Orders", body: "Orders are accepted by the individual restaurant or shop. Final prices and totals are confirmed by Food24KH's servers at checkout." },
+      { heading: "Draft terms", body: "These terms are a placeholder for development and are not legally binding. Final terms will be published before Food24h launches." },
+      { heading: "Orders", body: "Orders are accepted by the individual restaurant or shop. Final prices and totals are confirmed by Food24h's servers at checkout." },
     ],
   },
   privacy: {
     title: "Privacy policy",
     sections: [
       { heading: "Draft policy", body: "This policy is a development placeholder. In the current demo, your cart, addresses and orders are stored only in this browser." },
-      { heading: "Your data", body: "Food24KH will never sell your personal data. Passwords are never stored in plain text." },
+      { heading: "Your data", body: "Food24h will never sell your personal data. Passwords are never stored in plain text." },
     ],
   },
 };
@@ -64,7 +64,7 @@ export default async function InfoPage({ params }: Props) {
         ))}
       </div>
       <Link href="/" className="mt-8 inline-block font-semibold text-primary hover:underline">
-        ← Back to Food24KH
+        ← Back to Food24h
       </Link>
     </article>
   );

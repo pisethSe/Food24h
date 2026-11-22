@@ -1,22 +1,33 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: food24kh-postgres
+    container_name: food24h-postgres
     restart: unless-stopped
     ports:
-      # Host 5432 is occupied/broken on this machine; use 5433 for local Rails.
       - "5433:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: food24kh_development
+      POSTGRES_DB: food24h_development
     volumes:
-      - food24kh_pg_data:/var/lib/postgresql/data
+      - food24h_pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d food24kh_development"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d food24h_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: food24h-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 5s
       retries: 10
 
 volumes:
-  food24kh_pg_data:
+  food24h_pg_data:

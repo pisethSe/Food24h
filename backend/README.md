@@ -1,24 +1,22 @@
-# README
+# Food24h NestJS API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+```bash
+cp .env.example .env
+npm install
+npm run prisma:generate
+npm run prisma:migrate
+npm run prisma:seed
+npm run start:dev
+```
 
-* Ruby version
+Endpoints:
 
-* System dependencies
+- `GET /api/v1/health`
+- `GET /api/v1/foods`
+- `GET /api/v1/foods/:id`
+- `GET /api/v1/restaurants`
+- `GET /api/v1/restaurants/:id`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The API uses PostgreSQL through Prisma, Redis for cache integration, Socket.IO for real-time updates, and AWS S3 signed uploads.

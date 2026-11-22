@@ -5,7 +5,7 @@ export function DealCard({ deal }: { deal: Deal }) {
   return (
     <Link
       href={`/restaurants/${deal.restaurantSlug}`}
-      className="relative flex h-40 w-72 shrink-0 snap-start overflow-hidden rounded-2xl p-5 text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg sm:w-80"
+      className="relative flex h-40 w-72 shrink-0 snap-start overflow-hidden rounded-[1.25rem] p-5 text-white shadow-[0_12px_32px_-24px_rgba(24,51,42,0.6)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_36px_-22px_rgba(24,51,42,0.5)] sm:w-80"
       style={{ background: `linear-gradient(120deg, ${deal.tint[0]}, ${deal.tint[1]})` }}
     >
       <div className="relative z-10 max-w-[58%]">

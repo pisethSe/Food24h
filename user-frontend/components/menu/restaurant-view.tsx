@@ -41,6 +41,7 @@ export function RestaurantView({ restaurant, initialItemId }: { restaurant: Rest
   const [infoOpen, setInfoOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState(categories[0] ?? "");
+  const effectiveActiveCategory = categories.includes(activeCategory) ? activeCategory : (categories[0] ?? "");
   const [headerOffset, setHeaderOffset] = useState(96);
 
   useEffect(() => {
@@ -82,10 +83,6 @@ export function RestaurantView({ restaurant, initialItemId }: { restaurant: Rest
       cancelled = true;
     };
   }, [restaurant.slug, initialItemId]);
-
-  useEffect(() => {
-    if (categories[0] && !categories.includes(activeCategory)) setActiveCategory(categories[0]);
-  }, [categories, activeCategory]);
 
   useEffect(() => {
     const sections = categories
@@ -218,10 +215,10 @@ export function RestaurantView({ restaurant, initialItemId }: { restaurant: Rest
                     <a
                       key={category}
                       href={`#${sectionId(category)}`}
-                      aria-current={activeCategory === category ? "true" : undefined}
+                      aria-current={effectiveActiveCategory === category ? "true" : undefined}
                       className={cn(
                         "whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-semibold transition",
-                        activeCategory === category ? "bg-primary text-white" : "text-foreground hover:bg-primary-soft"
+                        effectiveActiveCategory === category ? "bg-primary text-white" : "text-foreground hover:bg-primary-soft"
                       )}
                     >
                       {category}

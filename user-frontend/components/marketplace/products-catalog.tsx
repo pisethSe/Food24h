@@ -19,8 +19,6 @@ export function ProductsCatalog() {
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
-    setError(null);
     fetchFoods({ page, perPage: 30, q: query || undefined })
       .then((response) => {
         if (cancelled) return;
@@ -45,6 +43,8 @@ export function ProductsCatalog() {
         className="flex flex-col gap-3 sm:flex-row"
         onSubmit={(event) => {
           event.preventDefault();
+          setLoading(true);
+          setError(null);
           setPage(1);
           setQuery(q.trim());
         }}
@@ -66,14 +66,14 @@ export function ProductsCatalog() {
 
       {error && (
         <p className="rounded-2xl border border-error/30 bg-red-50 p-4 text-sm text-error">
-          {error}. Start the Rails API on port 3000, then refresh.
+          {error}. Start the NestJS API on port 3000, then refresh.
         </p>
       )}
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
         {foods.map((food) => {
           return (
-            <Link key={food.id} href={`/foods/${food.id}`} className="group rounded-2xl border border-border bg-card p-2 hover:border-primary hover:shadow-md">
+            <Link key={food.id} href={`/foods/${food.id}`} className="group rounded-[1.25rem] border border-border/70 bg-card p-2 shadow-[0_10px_30px_-24px_rgba(24,51,42,0.5)] transition duration-300 hover:-translate-y-1 hover:border-primary/50">
                   <div className="aspect-square overflow-hidden rounded-xl bg-white">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={resolveFoodImage(food)} alt={food.name} className="h-full w-full object-contain p-1" />
@@ -91,7 +91,11 @@ export function ProductsCatalog() {
           <button
             type="button"
             disabled={page <= 1 || loading}
-            onClick={() => setPage((value) => Math.max(1, value - 1))}
+            onClick={() => {
+              setLoading(true);
+              setError(null);
+              setPage((value) => Math.max(1, value - 1));
+            }}
             className="h-10 rounded-full border border-border px-4 text-sm font-semibold disabled:opacity-40"
           >
             Previous
@@ -102,7 +106,11 @@ export function ProductsCatalog() {
           <button
             type="button"
             disabled={page >= totalPages || loading}
-            onClick={() => setPage((value) => Math.min(totalPages, value + 1))}
+            onClick={() => {
+              setLoading(true);
+              setError(null);
+              setPage((value) => Math.min(totalPages, value + 1));
+            }}
             className="h-10 rounded-full border border-border px-4 text-sm font-semibold disabled:opacity-40"
           >
             Next

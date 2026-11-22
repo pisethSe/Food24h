@@ -167,14 +167,14 @@ export function Marketplace({ mode, initialTags = [], heading }: MarketplaceProp
             </div>
             {productPreview.length === 0 ? (
               <p className="rounded-2xl border border-dashed border-border bg-card p-6 text-sm text-muted">
-                Loading dishes from the API… Make sure Rails is running on port 3000.
+                Loading dishes from the API… Make sure NestJS is running on port 3000.
               </p>
             ) : (
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6">
                 {productPreview.map((item) => {
                   const src = resolveFoodImage(item);
                   return (
-                    <Link key={item.id} href={`/foods/${item.id}`} className="group rounded-2xl border border-border bg-card p-2 hover:border-primary">
+                    <Link key={item.id} href={`/foods/${item.id}`} className="group rounded-[1.25rem] border border-border/70 bg-card p-2 shadow-[0_10px_30px_-24px_rgba(24,51,42,0.5)] transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_16px_32px_-20px_rgba(22,131,75,0.32)]">
                       <div className="aspect-square overflow-hidden rounded-xl bg-white">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={src} alt={item.name} className="h-full w-full object-contain p-1" />
@@ -220,8 +220,8 @@ export function Marketplace({ mode, initialTags = [], heading }: MarketplaceProp
             })}
           </Rail>
 
-          <section className="mt-10 flex flex-col items-start gap-5 rounded-3xl bg-primary-soft p-6 sm:flex-row sm:items-center sm:p-8">
-            <span className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-primary text-white">
+          <section className="mt-12 flex flex-col items-start gap-5 rounded-[1.5rem] border border-primary/10 bg-[linear-gradient(135deg,#edf7f0,#f7faf3)] p-6 shadow-[0_18px_40px_-30px_rgba(22,131,75,0.55)] sm:flex-row sm:items-center sm:p-8">
+            <span className="grid h-20 w-20 shrink-0 place-items-center rounded-[1.25rem] bg-primary text-white shadow-[0_12px_24px_-14px_rgba(22,131,75,0.65)]">
               <Smartphone className="h-10 w-10" aria-hidden />
             </span>
             <div>

@@ -196,7 +196,7 @@ export function SiteHeader() {
       {showModes ? <div className="bg-card">{brandRow}</div> : (
         <div
           data-site-sticky
-          className="sticky top-0 z-40 bg-card shadow-[0_1px_0_var(--border),0_8px_24px_-16px_rgba(0,0,139,0.25)]"
+          className="sticky top-0 z-40 border-b border-border/70 bg-card/95 backdrop-blur-xl"
         >
           {brandRow}
         </div>
@@ -215,7 +215,7 @@ export function SiteHeader() {
       {showModes && (
         <div
           data-site-sticky
-          className="sticky top-0 z-40 bg-card shadow-[0_1px_0_var(--border),0_8px_24px_-16px_rgba(0,0,139,0.25)]"
+          className="sticky top-0 z-40 border-b border-border/70 bg-card/95 backdrop-blur-xl"
         >
           <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-2 sm:px-6 md:flex-row md:items-center md:justify-between">
             <nav aria-label="Ordering mode" className="flex gap-1 overflow-x-auto no-scrollbar">

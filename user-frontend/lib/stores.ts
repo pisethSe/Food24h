@@ -4,27 +4,27 @@ import { createPersistentStore } from "@/lib/store";
 import type { Address, Cart, Currency, Locale, Order, Profile } from "@/types";
 
 export const preferencesStore = createPersistentStore<{ locale: Locale; currency: Currency }>(
-  "food24kh:preferences",
+  "food24h:preferences",
   { locale: "en", currency: "USD" }
 );
 
-export const cartStore = createPersistentStore<Cart>("food24kh:cart", {
+export const cartStore = createPersistentStore<Cart>("food24h:cart", {
   restaurantSlug: null,
   lines: [],
 });
 
 export const favoritesStore = createPersistentStore<{ restaurants: string[]; foods: string[] }>(
-  "food24kh:favorites",
+  "food24h:favorites",
   { restaurants: [], foods: [] }
 );
 
-export const addressesStore = createPersistentStore<Address[]>("food24kh:addresses", []);
+export const addressesStore = createPersistentStore<Address[]>("food24h:addresses", []);
 
-export const ordersStore = createPersistentStore<Order[]>("food24kh:orders", []);
+export const ordersStore = createPersistentStore<Order[]>("food24h:orders", []);
 
-export const recentlyViewedStore = createPersistentStore<string[]>("food24kh:recent", []);
+export const recentlyViewedStore = createPersistentStore<string[]>("food24h:recent", []);
 
-export const profileStore = createPersistentStore<Profile>("food24kh:profile", {
+export const profileStore = createPersistentStore<Profile>("food24h:profile", {
   name: "",
   phone: "",
   email: "",

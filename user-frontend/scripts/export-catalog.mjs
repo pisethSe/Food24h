@@ -1,5 +1,5 @@
 // Exports the development catalogue in lib/data.ts to backend/db/seeds/catalog.json
-// so the Rails seeds load exactly the data the customer site shows.
+// so the NestJS seeds load exactly the data the customer site shows.
 // Usage: npm run export:catalog
 
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";

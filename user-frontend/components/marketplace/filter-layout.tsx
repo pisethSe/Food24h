@@ -33,7 +33,7 @@ export function FilterLayout({ filters, onChange, categories, categoryTitle, sho
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:grid lg:grid-cols-[260px_1fr] lg:gap-8">
       <aside className="hidden lg:block">
-        <div className="sticky top-44 max-h-[calc(100vh-12rem)] overflow-y-auto rounded-2xl border border-border bg-card p-5">
+        <div className="sticky top-44 max-h-[calc(100vh-12rem)] overflow-y-auto rounded-[1.25rem] border border-border/80 bg-card p-5 shadow-[0_12px_32px_-26px_rgba(24,51,42,0.45)]">
           {panel}
         </div>
       </aside>

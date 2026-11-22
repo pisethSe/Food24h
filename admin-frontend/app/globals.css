@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #111827;
+  --background: #fbfaf6;
+  --foreground: #18332a;
   --card: #ffffff;
-  --muted: #6b7280;
-  --border: #e5e7eb;
-  --primary: #c2185b;
-  --primary-dark: #9d174d;
-  --secondary: #ff9800;
-  --success: #16a34a;
+  --muted: #65766f;
+  --border: #e7e9df;
+  --primary: #16834b;
+  --primary-dark: #0d6337;
+  --primary-soft: #edf7f0;
+  --primary-soft: #edf7f0;
+  --secondary: #f3b84b;
+  --success: #16834b;
   --warning: #f59e0b;
   --error: #dc2626;
-  --radius: 0.75rem;
+  --radius: 1.125rem;
 }
 
 @theme inline {
@@ -23,6 +25,7 @@
   --color-border: var(--border);
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
+  --color-primary-soft: var(--primary-soft);
   --color-secondary: var(--secondary);
   --color-success: var(--success);
   --color-warning: var(--warning);
@@ -34,7 +37,7 @@
 
 body {
   background:
-    linear-gradient(180deg, rgba(194, 24, 91, 0.04), transparent 24%),
+    linear-gradient(180deg, rgba(22, 131, 75, 0.04), transparent 24%),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), "Noto Sans Khmer", sans-serif;

@@ -3,7 +3,7 @@ import { ProductsCatalog } from "@/components/marketplace/products-catalog";
 
 export const metadata: Metadata = {
   title: "All dishes",
-  description: "Browse 1000 Food24KH dishes with real white-background product photos from PostgreSQL.",
+  description: "Browse 1000 Food24h dishes with real white-background product photos from PostgreSQL.",
   alternates: { canonical: "/products" },
 };
 

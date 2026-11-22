@@ -1,7 +1,7 @@
 import { appConfig } from "@/lib/config";
 import type { CartLine, Fulfilment, PriceSummary, Restaurant } from "@/types";
 
-// Display estimate only. The Rails API recalculates every total server-side when orders are created.
+// Display estimate only. The NestJS API recalculates every total server-side when orders are created.
 
 const cents = (value: number) => Math.round(value * 100);
 const dollars = (value: number) => value / 100;

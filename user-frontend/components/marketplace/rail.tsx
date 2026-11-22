@@ -9,7 +9,7 @@ export function Rail({ title, children, action }: { title: string; children: Rea
     scrollerRef.current?.scrollBy({ left: direction * scrollerRef.current.clientWidth * 0.8, behavior: "smooth" });
 
   return (
-    <section className="mt-10" aria-label={title}>
+    <section className="mt-12" aria-label={title}>
       <div className="mb-4 flex items-end justify-between gap-4">
         <h2 className="font-display text-2xl font-bold tracking-tight sm:text-[1.7rem]">{title}</h2>
         <div className="flex items-center gap-2">

@@ -1,0 +1,176 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model City {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  position    Int          @default(0)
+  active      Boolean      @default(true)
+  restaurants Restaurant[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Category {
+  id        Int                  @id @default(autoincrement())
+  slug      String               @unique
+  name      String
+  nameKm    String
+  emoji     String?
+  kind      String
+  position  Int                  @default(0)
+  restaurants RestaurantCategory[]
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @updatedAt
+}
+
+model Restaurant {
+  id                        Int                   @id @default(autoincrement())
+  slug                      String                @unique
+  name                      String
+  kind                      String                @default("restaurant")
+  status                    String                @default("pending")
+  description               String?
+  emoji                     String?
+  tintFrom                  String?
+  tintTo                    String?
+  rating                    Decimal               @default(0) @db.Decimal(2, 1)
+  reviewCount               Int                   @default(0)
+  deliveryMinutes           Int                   @default(30)
+  deliveryFee               Decimal               @default(0) @db.Decimal(10, 2)
+  minimumOrder              Decimal               @default(0) @db.Decimal(10, 2)
+  priceLevel                Int                   @default(1)
+  distanceKm                Decimal?              @db.Decimal(6, 2)
+  isOpen                    Boolean               @default(true)
+  acceptsVouchers           Boolean               @default(true)
+  freeDeliveryFirstOrder     Boolean               @default(false)
+  promotion                 String?
+  pickupDiscountPercent      Int?
+  address                   String?
+  cityId                    Int?
+  city                      City?                 @relation(fields: [cityId], references: [id])
+  openingHours              String?
+  logoUrl                   String?
+  categories                RestaurantCategory[]
+  menuCategories            MenuCategory[]
+  foods                     Food[]
+  deals                     Deal[]
+  createdAt                 DateTime              @default(now())
+  updatedAt                 DateTime              @updatedAt
+}
+
+model RestaurantCategory {
+  restaurantId Int
+  categoryId   Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  category     Category   @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([restaurantId, categoryId])
+}
+
+model MenuCategory {
+  id           Int      @id @default(autoincrement())
+  restaurantId Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  name         String
+  position     Int      @default(0)
+  foods        Food[]
+
+  @@unique([restaurantId, name])
+}
+
+model Food {
+  id              Int               @id @default(autoincrement())
+  restaurantId    Int
+  restaurant      Restaurant        @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  menuCategoryId  Int
+  menuCategory    MenuCategory      @relation(fields: [menuCategoryId], references: [id])
+  slug            String            @unique
+  name            String
+  description     String?
+  price           Decimal           @db.Decimal(10, 2)
+  discountPrice   Decimal?          @db.Decimal(10, 2)
+  emoji           String?
+  imageUrl        String?
+  popular         Boolean           @default(false)
+  available       Boolean           @default(true)
+  prepMinutes     Int               @default(15)
+  position        Int               @default(0)
+  optionGroups    FoodOptionGroup[]
+  addons          FoodAddon[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+model FoodOptionGroup {
+  id       Int                 @id @default(autoincrement())
+  foodId   Int
+  food     Food                @relation(fields: [foodId], references: [id], onDelete: Cascade)
+  key      String
+  name     String
+  required Boolean             @default(true)
+  position Int                 @default(0)
+  choices  FoodOptionChoice[]
+
+  @@unique([foodId, key])
+}
+
+model FoodOptionChoice {
+  id       Int             @id @default(autoincrement())
+  groupId  Int
+  group    FoodOptionGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  key      String
+  name     String
+  priceDelta Decimal       @default(0) @db.Decimal(10, 2)
+  position Int             @default(0)
+
+  @@unique([groupId, key])
+}
+
+model FoodAddon {
+  id       Int     @id @default(autoincrement())
+  foodId   Int
+  food     Food    @relation(fields: [foodId], references: [id], onDelete: Cascade)
+  key      String
+  name     String
+  price    Decimal @db.Decimal(10, 2)
+  position Int     @default(0)
+
+  @@unique([foodId, key])
+}
+
+model Deal {
+  id           Int        @id @default(autoincrement())
+  key          String     @unique
+  title        String
+  subtitle     String?
+  restaurantId Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
+  section      String     @default("food")
+  tintFrom     String?
+  tintTo       String?
+  emoji        String?
+  active       Boolean    @default(true)
+  position     Int        @default(0)
+}
+
+model Coupon {
+  id             Int       @id @default(autoincrement())
+  code           String    @unique
+  description    String?
+  discountType   String
+  value          Decimal   @default(0) @db.Decimal(10, 2)
+  minimumOrder   Decimal   @default(0) @db.Decimal(10, 2)
+  maximumDiscount Decimal? @db.Decimal(10, 2)
+  usageLimit     Int?
+  usedCount      Int       @default(0)
+  startsAt       DateTime?
+  endsAt         DateTime?
+  active         Boolean   @default(true)
+}

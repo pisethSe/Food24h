@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${food.name} from ${restaurant.name}`;
   return {
     title,
-    description: `${food.description} Order ${food.name} from ${restaurant.name} on Food24KH.`,
+    description: `${food.description} Order ${food.name} from ${restaurant.name} on Food24h.`,
     alternates: { canonical: `/foods/${food.id}` },
     openGraph: { title, description: food.description },
   };

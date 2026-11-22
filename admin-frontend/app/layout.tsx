@@ -1,34 +1,38 @@
-import type { Metadata } from "next";
-import { Manrope, Sora } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
+const jakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const sora = Sora({
+const jakartaDisplay = Plus_Jakarta_Sans({
   variable: "--font-display",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Food24KH Admin",
-    template: "%s | Food24KH Admin",
+    default: "Food24h Admin",
+    template: "%s | Food24h Admin",
   },
-  description: "Administration console for the Food24KH marketplace.",
+  description: "Administration console for the Food24h marketplace.",
   robots: {
     index: false,
     follow: false,
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#16834B",
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${sora.variable} h-full antialiased`}
+      className={`${jakarta.variable} ${jakartaDisplay.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

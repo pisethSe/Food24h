@@ -1,7 +1,7 @@
 import type { Addon, Category, Deal, FoodItem, OptionGroup, Restaurant } from "@/types";
 import { resolveFoodImage } from "@/lib/food-images";
 
-// Development catalogue. Every business below is fictional; this data is replaced by the Rails API in Phase 5.
+// Development catalogue. Every business below is fictional; this data is replaced by the NestJS API in Phase 5.
 
 export const cuisines: Category[] = [
   { slug: "khmer", name: "Khmer", nameKm: "ម្ហូបខ្មែរ", emoji: "🍲", imageUrl: "/icons/cuisines/khmer.png" },

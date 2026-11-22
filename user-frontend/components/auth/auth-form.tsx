@@ -109,7 +109,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
       {notice && (
         <p className="flex items-start gap-2 rounded-xl bg-primary-soft p-3 text-sm text-primary" role="status">
           <Info className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
-          Your details look good. Secure sign-in is being connected to the Food24KH API — accounts are not created yet.
+          Your details look good. Secure sign-in is being connected to the Food24h API — accounts are not created yet.
         </p>
       )}
 
@@ -117,7 +117,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
         {mode === "login" ? "Log in" : "Create account"}
       </button>
       <p className="text-center text-sm text-muted">
-        {mode === "login" ? "New to Food24KH? " : "Already have an account? "}
+        {mode === "login" ? "New to Food24h? " : "Already have an account? "}
         <Link href={mode === "login" ? "/register" : "/login"} className="font-semibold text-primary hover:underline">
           {mode === "login" ? "Sign up" : "Log in"}
         </Link>

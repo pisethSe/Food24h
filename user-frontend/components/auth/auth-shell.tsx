@@ -4,7 +4,7 @@ export function AuthShell({ title, subtitle, children }: { title: string; subtit
   return (
     <div className="mx-auto grid max-w-5xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-2 lg:items-center">
       <div className="hidden overflow-hidden rounded-3xl bg-primary p-10 text-white lg:block">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">Food24KH</p>
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">Food24h</p>
         <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight">Cambodia&apos;s favourite food, any time of day.</h2>
         <ul className="mt-6 space-y-3 text-white/85">
           <li>🍲 Hundreds of local dishes</li>
