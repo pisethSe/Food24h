@@ -3,15 +3,35 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, type ReactNode } from "react";
 
-export function Rail({ title, children, action }: { title: string; children: ReactNode; action?: ReactNode }) {
+export function Rail({
+  title,
+  children,
+  action,
+  eyebrow,
+  description,
+}: {
+  title: string;
+  children: ReactNode;
+  action?: ReactNode;
+  eyebrow?: string;
+  description?: string;
+}) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const scroll = (direction: 1 | -1) =>
     scrollerRef.current?.scrollBy({ left: direction * scrollerRef.current.clientWidth * 0.8, behavior: "smooth" });
 
   return (
     <section className="mt-12" aria-label={title}>
-      <div className="mb-4 flex items-end justify-between gap-4">
-        <h2 className="font-display text-2xl font-bold tracking-tight sm:text-[1.7rem]">{title}</h2>
+      <div className="mb-5 flex items-end justify-between gap-4">
+        <div>
+          {eyebrow && (
+            <p className="mb-1.5 text-[10px] font-extrabold uppercase tracking-[0.18em] text-primary">
+              {eyebrow}
+            </p>
+          )}
+          <h2 className="font-display text-2xl font-bold tracking-tight sm:text-[1.7rem]">{title}</h2>
+          {description && <p className="mt-1.5 max-w-xl text-sm leading-6 text-muted">{description}</p>}
+        </div>
         <div className="flex items-center gap-2">
           {action}
           <button

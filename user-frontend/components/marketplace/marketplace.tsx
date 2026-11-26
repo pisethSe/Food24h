@@ -20,6 +20,7 @@ import { recentlyViewedStore } from "@/lib/stores";
 import { cn } from "@/lib/utils";
 import type { Restaurant } from "@/types";
 import { Compass, Smartphone } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 
 type MarketplaceProps = {
   mode: "delivery" | "pickup";
@@ -31,6 +32,7 @@ export function Marketplace({ mode, initialTags = [], heading }: MarketplaceProp
   const t = useT();
   const locale = useLocale();
   const money = useMoney();
+  const reduceMotion = useReducedMotion();
   const recentSlugs = useStore(recentlyViewedStore);
   const [filters, setFilters] = useState<FilterState>({
     ...defaultFilters,
@@ -111,45 +113,64 @@ export function Marketplace({ mode, initialTags = [], heading }: MarketplaceProp
         </section>
       )}
 
-      <Rail title={t("favouriteCuisines")}>
-        {cuisines.map((cuisine) => {
+      <Rail
+        title={t("favouriteCuisines")}
+        eyebrow={t("cuisinesEyebrow")}
+        description={t("cuisinesDescription")}
+      >
+        {cuisines.map((cuisine, index) => {
           const active = filters.tags.includes(cuisine.slug);
           return (
-            <button
+            <motion.button
               key={cuisine.slug}
               type="button"
               onClick={() => toggleCuisine(cuisine.slug)}
               aria-pressed={active}
-              className="group flex w-24 shrink-0 snap-start flex-col items-center gap-2"
+              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+              whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.35, delay: reduceMotion ? 0 : index * 0.025, ease: "easeOut" }}
+              whileHover={reduceMotion ? undefined : { y: -3, scale: 1.025 }}
+              whileTap={reduceMotion ? undefined : { scale: 0.96 }}
+              className="group flex w-[6.35rem] shrink-0 snap-start flex-col items-center gap-3 text-left motion-reduce:transition-none"
             >
               <span
                 className={cn(
-                  "relative grid h-20 w-20 place-items-center rounded-2xl bg-white transition",
-                  active ? "ring-2 ring-primary" : "ring-1 ring-border group-hover:ring-primary"
+                  "relative grid h-[6.1rem] w-[6.1rem] place-items-center overflow-hidden rounded-[1.35rem] border bg-white shadow-[0_8px_24px_-20px_rgba(24,51,42,0.5)] transition duration-300 group-hover:shadow-[0_16px_30px_-20px_rgba(22,131,75,0.45)] motion-reduce:transition-none",
+                  active ? "border-primary ring-2 ring-primary/20" : "border-border/80 group-hover:border-primary/50"
                 )}
               >
-                <span className="absolute inset-0 overflow-hidden rounded-2xl">
+                <span className="absolute inset-0 overflow-hidden rounded-[1.3rem] bg-[#f7f7f1]">
                   {cuisine.imageUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={cuisine.imageUrl} alt="" className="h-full w-full object-contain p-1.5" />
+                    <img src={cuisine.imageUrl} alt="" className="h-full w-full object-cover p-1 transition duration-500 motion-safe:group-hover:scale-105 motion-reduce:transition-none" />
                   ) : (
                     <span className="grid h-full w-full place-items-center text-4xl" aria-hidden>
                       {cuisine.emoji}
                     </span>
                   )}
                 </span>
+                {active && (
+                  <span className="absolute right-2 top-2 grid h-6 w-6 place-items-center rounded-full bg-primary text-[11px] font-bold text-white shadow">
+                    ✓
+                  </span>
+                )}
               </span>
-              <span className={cn("text-center text-sm font-semibold", active ? "text-primary" : "text-foreground")}>
+              <span className={cn("w-full truncate text-center text-[13px] font-bold", active ? "text-primary" : "text-foreground")}>
                 {locale === "km" ? cuisine.nameKm : cuisine.name}
               </span>
-            </button>
+            </motion.button>
           );
         })}
       </Rail>
 
       {!filtersActive && (
         <>
-          <Rail title={t("dailyDeals")}>
+          <Rail
+            title={t("dailyDeals")}
+            eyebrow={t("dealsEyebrow")}
+            description={t("dealsDescription")}
+          >
             {deals.map((deal) => (
               <DealCard key={deal.id} deal={deal} />
             ))}

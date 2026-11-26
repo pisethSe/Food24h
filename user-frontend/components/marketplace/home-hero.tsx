@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import { useReducedMotion } from "motion/react";
 import { useT } from "@/lib/i18n";
 
 type HomeHeroProps = {
@@ -13,9 +14,10 @@ type HomeHeroProps = {
 export function HomeHero({ dishCount = 1000 }: HomeHeroProps) {
   const t = useT();
   const heroRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
 
   useLayoutEffect(() => {
-    if (!heroRef.current) return;
+    if (!heroRef.current || reduceMotion) return;
     const context = gsap.context(() => {
       gsap.from("[data-hero-anim]", {
         y: 18,
@@ -26,7 +28,7 @@ export function HomeHero({ dishCount = 1000 }: HomeHeroProps) {
       });
     }, heroRef);
     return () => context.revert();
-  }, []);
+  }, [reduceMotion]);
 
   return (
     <section ref={heroRef} className="relative isolate min-h-[min(68vh,32rem)] w-full overflow-hidden rounded-b-[2rem] bg-primary text-white sm:rounded-b-[2.5rem]">
